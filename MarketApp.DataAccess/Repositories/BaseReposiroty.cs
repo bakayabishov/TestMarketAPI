@@ -1,9 +1,8 @@
 using System.Linq.Expressions;
-using MarketApp.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using TestAPIMarket.Data.Repositories.Interfaces;
 
-namespace TestAPIMarket.Data.Repositories
+namespace MarketApp.DataAccess.Repositories
 {
     public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {

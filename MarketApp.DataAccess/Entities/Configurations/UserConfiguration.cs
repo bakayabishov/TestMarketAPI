@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TestAPIMarket.Data.Entities;
 
-namespace TestAPIMarket.Data.Entities.Configurations {
+namespace MarketApp.DataAccess.Entities.Configurations {
     /// <summary>
     /// Setting schema for Users table
     /// </summary>

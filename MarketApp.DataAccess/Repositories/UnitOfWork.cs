@@ -1,7 +1,6 @@
-﻿using MarketApp.DataAccess;
-using TestAPIMarket.Data.Repositories.Interfaces;
+﻿using TestAPIMarket.Data.Repositories.Interfaces;
 
-namespace TestAPIMarket.Data.Repositories
+namespace MarketApp.DataAccess.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

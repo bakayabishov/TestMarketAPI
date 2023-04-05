@@ -1,4 +1,4 @@
-﻿using TestAPIMarket.Data.Entities.Configurations;
+﻿using MarketApp.DataAccess.Entities.Configurations;
 
 namespace TestAPIMarket.Data.Entities;
 /// <summary>

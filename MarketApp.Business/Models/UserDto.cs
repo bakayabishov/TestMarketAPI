@@ -1,4 +1,4 @@
-namespace MarketApp.API.Models;
+namespace MarketApp.Business.Models;
 
 public class UserDto
 {
