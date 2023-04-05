@@ -1,0 +1,14 @@
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\bin\Debug\net7.0\MarketApp.DataAccess.deps.json
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\bin\Debug\net7.0\MarketApp.DataAccess.runtimeconfig.json
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\bin\Debug\net7.0\MarketApp.DataAccess.dll
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\bin\Debug\net7.0\MarketApp.DataAccess.pdb
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\obj\Debug\net7.0\MarketApp.DataAccess.csproj.AssemblyReference.cache
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\obj\Debug\net7.0\MarketApp.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\obj\Debug\net7.0\MarketApp.DataAccess.AssemblyInfoInputs.cache
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\obj\Debug\net7.0\MarketApp.DataAccess.AssemblyInfo.cs
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\obj\Debug\net7.0\MarketApp.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\obj\Debug\net7.0\MarketApp.DataAccess.dll
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\obj\Debug\net7.0\refint\MarketApp.DataAccess.dll
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\obj\Debug\net7.0\MarketApp.DataAccess.pdb
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\obj\Debug\net7.0\MarketApp.DataAccess.genruntimeconfig.cache
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.DataAccess\obj\Debug\net7.0\ref\MarketApp.DataAccess.dll
