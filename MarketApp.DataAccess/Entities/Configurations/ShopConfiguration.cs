@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TestAPIMarket.Data.Entities;
 
 namespace MarketApp.DataAccess.Entities.Configurations {
     /// <summary>
@@ -11,6 +10,10 @@ namespace MarketApp.DataAccess.Entities.Configurations {
         public void Configure(EntityTypeBuilder<Shop> builder) {
             builder.ToTable("shops");
             builder.HasKey(x => x.Id);
+            
+            builder.HasMany(x => x.Managers)
+                .WithOne(x => x.Shop)
+                .HasForeignKey(x => x.ShopId);
 
             builder.HasKey(x => x.Id);
            
@@ -21,8 +24,8 @@ namespace MarketApp.DataAccess.Entities.Configurations {
                 .HasColumnName("name")
                 .IsRequired();
             
-            builder.Property(x => x.Managers)
-                .HasColumnName("manager")
+            builder.Property(x => x.ManagerId)
+                .HasColumnName("manager_id")
                 .IsRequired();
         }
     }

@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MarketApp.DataAccess.Entities;
+using MarketApp.DataAccess.Entities.Configurations;
+using MarketApp.DataAccess.Seeds;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using TestAPIMarket.Data.Entities;
 
 namespace MarketApp.DataAccess
 {
@@ -21,6 +23,17 @@ namespace MarketApp.DataAccess
 
                 return new DataContext(optionsBuilder.Options, Users, Shops, Products);
             }
+        }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new ShopConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.Seed(new UserSeeds());
+            modelBuilder.Seed(new ShopSeeds());
+            modelBuilder.Seed(new ProductSeeds());
         }
 
         public static DbSet<User> Users { get; set; }

@@ -1,5 +1,5 @@
 using AutoMapper;
-using TestAPIMarket.Data.Entities;
+using MarketApp.DataAccess.Entities;
 
 namespace MarketApp.Business.Models.Mappings;
 

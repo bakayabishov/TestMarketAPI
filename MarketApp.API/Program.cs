@@ -1,4 +1,5 @@
 using MarketApp.DataAccess;
+using Microsoft.Data.SqlClient;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TestAPIMarket.Data.Entities;
 
 namespace MarketApp.DataAccess.Entities.Configurations {
     /// <summary>

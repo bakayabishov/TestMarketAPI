@@ -1,6 +1,6 @@
 using MarketApp.DataAccess.Entities.Configurations;
 
-namespace TestAPIMarket.Data.Entities;
+namespace MarketApp.DataAccess.Entities;
 /// <summary>
 ///     Configuration file for this entity <see cref="ProductConfiguration" />
 /// </summary>

@@ -1,5 +1,5 @@
+using MarketApp.DataAccess.Entities;
 using MarketApp.DataAccess.Repositories.Interfaces;
-using TestAPIMarket.Data.Entities;
 
 namespace MarketApp.DataAccess.Repositories;
 

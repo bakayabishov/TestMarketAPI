@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TestAPIMarket.Data.Entities;
+﻿using MarketApp.DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace MarketApp.DataAccess.Seeds;
 
