@@ -1,4 +1,4 @@
-namespace TestAPIMarket.Data.Entities;
+namespace MarketApp.DataAccess.Entities;
 
 public enum Roles {
 

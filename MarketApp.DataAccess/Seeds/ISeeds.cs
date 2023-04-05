@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace TestAPIMarket.Data.Seeds;
+namespace MarketApp.DataAccess.Seeds;
 
 public interface ISeeds {
     ModelBuilder Seed(ModelBuilder builder);

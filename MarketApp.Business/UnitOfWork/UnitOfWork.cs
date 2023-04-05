@@ -1,5 +1,4 @@
 ﻿using MarketApp.DataAccess;
-using TestAPIMarket.Data.Repositories.Interfaces;
 
 namespace MarketApp.Business.UnitOfWork
 {

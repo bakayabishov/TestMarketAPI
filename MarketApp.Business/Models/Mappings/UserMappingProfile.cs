@@ -1,7 +1,7 @@
 using AutoMapper;
-using TestAPIMarket.Data.Entities;
+using MarketApp.DataAccess.Entities;
 
-namespace MarketApp.API.Models.Mappings;
+namespace MarketApp.Business.Models.Mappings;
 
 public class UserMappingProfile : Profile {
     public UserMappingProfile()

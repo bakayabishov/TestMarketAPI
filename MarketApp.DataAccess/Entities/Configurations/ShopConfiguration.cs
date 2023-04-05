@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace TestAPIMarket.Data.Entities.Configurations {
+namespace MarketApp.DataAccess.Entities.Configurations {
     /// <summary>
     /// Setting schema for Shops table
     /// </summary>
@@ -10,6 +10,10 @@ namespace TestAPIMarket.Data.Entities.Configurations {
         public void Configure(EntityTypeBuilder<Shop> builder) {
             builder.ToTable("shops");
             builder.HasKey(x => x.Id);
+            
+            builder.HasMany(x => x.Managers)
+                .WithOne(x => x.Shop)
+                .HasForeignKey(x => x.ShopId);
 
             builder.HasKey(x => x.Id);
            
@@ -20,8 +24,8 @@ namespace TestAPIMarket.Data.Entities.Configurations {
                 .HasColumnName("name")
                 .IsRequired();
             
-            builder.Property(x => x.Managers)
-                .HasColumnName("manager")
+            builder.Property(x => x.ManagerId)
+                .HasColumnName("manager_id")
                 .IsRequired();
         }
     }

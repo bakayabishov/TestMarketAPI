@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TestAPIMarket.Data.Entities;
+﻿using MarketApp.DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace TestAPIMarket.Data.Seeds;
+namespace MarketApp.DataAccess.Seeds;
 
 public class ProductSeeds : ISeeds {
     public ModelBuilder Seed(ModelBuilder builder) {
@@ -63,14 +63,14 @@ public class ProductSeeds : ISeeds {
                     ShopId = 1
                 },
                 new Product {
-                    Id = 1,
+                    Id = 9,
                     Name = "топор",
                     Quantity = 100,
                     Price = new decimal(89.8),
                     ShopId = 2
                 },
                 new Product {
-                    Id = 2,
+                    Id = 10,
                     Name = "молоток",
                     Quantity = 150,
                     Price = new decimal(99.9),
@@ -78,49 +78,49 @@ public class ProductSeeds : ISeeds {
                     
                 },
                 new Product {
-                    Id = 3,
+                    Id = 11,
                     Name = "гвозди",
                     Quantity = 10000,
                     Price = new decimal(1.5),
                     ShopId = 2
                 },
                 new Product {
-                    Id = 4,
+                    Id = 12,
                     Name = "изолента",
                     Quantity = 150,
                     Price = new decimal(15.7),
                     ShopId = 2
                 },
                 new Product {
-                    Id = 5,
+                    Id = 13,
                     Name = "лопата",
                     Quantity = 16,
                     Price = new decimal(45.5),
                     ShopId = 2
                 },
                 new Product {
-                    Id = 6,
+                    Id = 14,
                     Name = "грабли",
                     Quantity = 16,
                     Price = new decimal(54.4),
                     ShopId = 2
                 },
                 new Product {
-                    Id = 7,
+                    Id = 15,
                     Name = "вилы",
                     Quantity = 35,
                     Price = new decimal(65.4),
                     ShopId = 2
                 },
                 new Product {
-                    Id = 8,
+                    Id = 16,
                     Name = "газонакосилка",
                     Quantity = 5,
                     Price = new decimal(455.5),
                     ShopId = 2
                 },
                 new Product {
-                    Id = 9,
+                    Id = 17,
                     Name = "серп",
                     Quantity = 10,
                     Price = new decimal(55.9),

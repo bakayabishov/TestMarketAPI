@@ -3,6 +3,7 @@ using MarketApp.Business.Interfaces;
 using MarketApp.Business.Services;
 using Microsoft.Extensions.DependencyInjection;
 using TestAPIMarket.Data.Repositories.Interfaces;
+using IUnitOfWork = MarketApp.Business.UnitOfWork.IUnitOfWork;
 
 namespace MarketApp.Business; 
 

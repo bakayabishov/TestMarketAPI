@@ -1,9 +1,7 @@
-using MarketApp.DataAccess;
+using MarketApp.DataAccess.Entities;
 using MarketApp.DataAccess.Repositories.Interfaces;
-using TestAPIMarket.Data.Entities;
-using TestAPIMarket.Data.Repositories.Interfaces;
 
-namespace TestAPIMarket.Data.Repositories;
+namespace MarketApp.DataAccess.Repositories;
 
 public class UsersRepository : BaseRepository<User>, IUsersRepository
 {

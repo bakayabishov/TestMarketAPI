@@ -1,4 +1,4 @@
-﻿namespace TestAPIMarket.Data.Repositories.Interfaces
+﻿namespace MarketApp.Business.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {

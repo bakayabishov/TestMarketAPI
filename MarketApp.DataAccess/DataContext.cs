@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TestAPIMarket.Data.Entities;
+﻿using MarketApp.DataAccess.Entities;
+using MarketApp.DataAccess.Entities.Configurations;
+using MarketApp.DataAccess.Seeds;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace MarketApp.DataAccess
 {
-    public class DataContext : DbContext
-    {
+    public class DataContext : DbContext {
         public DataContext(DbContextOptions<DataContext> options, DbSet<User> users, DbSet<Shop> shops, DbSet<Product> products) : base(options)
         {
             Users = users;
@@ -12,15 +14,31 @@ namespace MarketApp.DataAccess
             Products = products;
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public class DbContextFactory : IDesignTimeDbContextFactory<DataContext>
         {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=localhost;Database=market;Trusted_Connection=true;TrustServerCertificate=true;");
+            public DataContext CreateDbContext(string[] args)
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
+                optionsBuilder.UseSqlServer("Server=localhost;user=sa;password=Moiparol7713!;Database=marketAPI;Trusted_Connection=true;TrustServerCertificate=true;");
+
+                return new DataContext(optionsBuilder.Options, Users, Shops, Products);
+            }
+        }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new ShopConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.Seed(new UserSeeds());
+            modelBuilder.Seed(new ShopSeeds());
+            modelBuilder.Seed(new ProductSeeds());
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Shop> Shops { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public static DbSet<User> Users { get; set; }
+        public static DbSet<Shop> Shops { get; set; }
+        public static DbSet<Product> Products { get; set; }
 
     }
 }

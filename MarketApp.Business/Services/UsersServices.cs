@@ -1,9 +1,8 @@
 using AutoMapper;
-using MarketApp.API.Models;
 using MarketApp.Business.Interfaces;
 using MarketApp.DataAccess.Repositories.Interfaces;
-using TestAPIMarket.Data.Entities;
 using TestAPIMarket.Data.Repositories.Interfaces;
+using IUnitOfWork = MarketApp.Business.UnitOfWork.IUnitOfWork;
 
 namespace MarketApp.Business.Services;
 
