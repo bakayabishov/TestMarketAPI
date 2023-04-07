@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarketApp.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230407062211_RolesAdd")]
+    [Migration("20230407070050_RolesAdd")]
     partial class RolesAdd
     {
         /// <inheritdoc />
@@ -250,8 +250,11 @@ namespace MarketApp.DataAccess.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasColumnName("password");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar")
+                        .HasColumnName("role");
 
                     b.Property<int>("ShopId")
                         .HasColumnType("int");
@@ -268,7 +271,7 @@ namespace MarketApp.DataAccess.Migrations
                             Id = 1,
                             Name = "Администратор",
                             Password = "Admin",
-                            Role = 1,
+                            Role = "Administrator",
                             ShopId = 1
                         },
                         new
@@ -276,7 +279,7 @@ namespace MarketApp.DataAccess.Migrations
                             Id = 2,
                             Name = "Менеджер",
                             Password = "Manager",
-                            Role = 2,
+                            Role = "Manager",
                             ShopId = 1
                         },
                         new
@@ -284,7 +287,7 @@ namespace MarketApp.DataAccess.Migrations
                             Id = 3,
                             Name = "Продавец",
                             Password = "Seller",
-                            Role = 3,
+                            Role = "Seller",
                             ShopId = 1
                         },
                         new
@@ -292,7 +295,7 @@ namespace MarketApp.DataAccess.Migrations
                             Id = 4,
                             Name = "Администратор",
                             Password = "Admin",
-                            Role = 1,
+                            Role = "Administrator",
                             ShopId = 2
                         },
                         new
@@ -300,7 +303,7 @@ namespace MarketApp.DataAccess.Migrations
                             Id = 5,
                             Name = "Менеджер",
                             Password = "Manager",
-                            Role = 2,
+                            Role = "Manager",
                             ShopId = 2
                         },
                         new
@@ -308,7 +311,7 @@ namespace MarketApp.DataAccess.Migrations
                             Id = 6,
                             Name = "Продавец",
                             Password = "Seller",
-                            Role = 3,
+                            Role = "Seller",
                             ShopId = 2
                         });
                 });

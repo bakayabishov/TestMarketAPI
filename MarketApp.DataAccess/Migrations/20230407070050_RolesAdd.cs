@@ -10,10 +10,16 @@ namespace MarketApp.DataAccess.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<int>(
+            migrationBuilder.RenameColumn(
                 name: "Role",
                 table: "users",
-                type: "int",
+                newName: "role");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "role",
+                table: "users",
+                type: "nvarchar(255)",
+                maxLength: 255,
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
@@ -29,55 +35,61 @@ namespace MarketApp.DataAccess.Migrations
                 table: "users",
                 keyColumn: "id",
                 keyValue: 1,
-                column: "Role",
-                value: 1);
+                column: "role",
+                value: "Administrator");
 
             migrationBuilder.UpdateData(
                 table: "users",
                 keyColumn: "id",
                 keyValue: 2,
-                column: "Role",
-                value: 2);
+                column: "role",
+                value: "Manager");
 
             migrationBuilder.UpdateData(
                 table: "users",
                 keyColumn: "id",
                 keyValue: 3,
-                column: "Role",
-                value: 3);
+                column: "role",
+                value: "Seller");
 
             migrationBuilder.UpdateData(
                 table: "users",
                 keyColumn: "id",
                 keyValue: 4,
-                column: "Role",
-                value: 1);
+                column: "role",
+                value: "Administrator");
 
             migrationBuilder.UpdateData(
                 table: "users",
                 keyColumn: "id",
                 keyValue: 5,
-                column: "Role",
-                value: 2);
+                column: "role",
+                value: "Manager");
 
             migrationBuilder.UpdateData(
                 table: "users",
                 keyColumn: "id",
                 keyValue: 6,
-                column: "Role",
-                value: 3);
+                column: "role",
+                value: "Seller");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.RenameColumn(
+                name: "role",
+                table: "users",
+                newName: "Role");
+
             migrationBuilder.AlterColumn<string>(
                 name: "Role",
                 table: "users",
                 type: "nvarchar(max)",
                 nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int");
+                oldClrType: typeof(string),
+                oldType: "nvarchar(255)",
+                oldMaxLength: 255);
 
             migrationBuilder.UpdateData(
                 table: "shops",
