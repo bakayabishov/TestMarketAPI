@@ -12,13 +12,4 @@ public enum Roles {
 
     [Display(Name = "Продавец")]
     Seller = 3
-
-}
-
-public class Role
-{
-    public const string Administrator = "administrator";
-    public const string Manager = "manager";
-    public const string Saller = "seller";
-
 }

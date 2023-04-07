@@ -87,3 +87,4 @@ C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.API\obj\Debug\net7.0\MarketA
 C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.API\obj\Debug\net7.0\MarketApp.API.pdb
 C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.API\obj\Debug\net7.0\MarketApp.API.genruntimeconfig.cache
 C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.API\obj\Debug\net7.0\ref\MarketApp.API.dll
+C:\Users\user\RiderProjects\TestMarketAPI\MarketApp.API\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

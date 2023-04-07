@@ -1,5 +1,11 @@
 global using MarketApp.DataAccess;
 global using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using MarketApp.Business.Interfaces;
+using MarketApp.Business.Models.Mappings;
+using MarketApp.Business.Models.Validators;
+using MarketApp.Business.Services;
+using MarketApp.Business.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +16,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IUsersServices, UsersServices>();
+builder.Services.AddValidators();
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -29,9 +39,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
