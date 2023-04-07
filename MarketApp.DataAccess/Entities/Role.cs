@@ -1,15 +1,15 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MarketApp.DataAccess.Entities;
+public enum Role { Administrator, Manager, Seller };
 
-public enum Roles {
+public class AuthorizedAttribute : AuthorizeAttribute {
 
-    [Display(Name = "Администратор")]
-    Administrator = 1,
+    public AuthorizedAttribute(params Role[] roles) : base() {
 
-    [Display(Name = "Менеджер")]
-    Manager = 2,
+        Roles = String.Join(",", Enum.GetNames(typeof(Role)));
 
-    [Display(Name = "Продавец")]
-    Seller = 3
+    }
 }
+

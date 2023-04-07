@@ -27,7 +27,7 @@ public class UserControllers : ControllerBase
 
     [HttpPost]
     [Route("AddUser")]
-    [Authorize(Roles = "Администратор")]
+    [Authorized(Role.Administrator)]
     [ProducesResponseType(typeof(ApiResponse), 200)]
     public async Task<IActionResult> CreateAsync(UserDto user) {
 
