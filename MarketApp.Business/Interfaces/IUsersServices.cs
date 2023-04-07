@@ -1,3 +1,9 @@
+using MarketApp.Business.Models;
+
 namespace MarketApp.Business.Interfaces;
 
-public interface IUsersServices { }
+public interface IUsersServices
+{
+    Task AddUsersAsync(UserDto user);
+
+}
