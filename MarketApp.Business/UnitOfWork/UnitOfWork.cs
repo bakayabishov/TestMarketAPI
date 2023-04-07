@@ -1,4 +1,5 @@
 ﻿using MarketApp.DataAccess;
+using MarketApp.DataAccess.Repositories.Interfaces;
 
 namespace MarketApp.Business.UnitOfWork
 {
@@ -16,6 +17,8 @@ namespace MarketApp.Business.UnitOfWork
         #region Method
         public async Task SaveChangesAsync() =>
             await _context.SaveChangesAsync();
+
+        public IUsersRepository Users { get; }
 
         protected virtual void Clean(bool disposing)
         {

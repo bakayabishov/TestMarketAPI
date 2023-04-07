@@ -1,6 +1,8 @@
 using MarketApp.DataAccess.Entities;
-using TestAPIMarket.Data.Repositories.Interfaces;
 
 namespace MarketApp.DataAccess.Repositories.Interfaces;
 
-public interface IUsersRepository : IBaseRepository<User> { }
+public interface IUsersRepository : IBaseRepository<User>
+{
+    Task<bool> IsAlreadyRegisteredAsync(string name);
+}

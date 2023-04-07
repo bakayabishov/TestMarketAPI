@@ -6,24 +6,9 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace MarketApp.DataAccess
 {
-    public class DataContext : DbContext {
-        public DataContext(DbContextOptions<DataContext> options, DbSet<User> users, DbSet<Shop> shops, DbSet<Product> products) : base(options)
-        {
-            Users = users;
-            Shops = shops;
-            Products = products;
-        }
-
-        public class DbContextFactory : IDesignTimeDbContextFactory<DataContext>
-        {
-            public DataContext CreateDbContext(string[] args)
-            {
-                var optionsBuilder = new DbContextOptionsBuilder<DataContext>();
-                optionsBuilder.UseSqlServer("Server=localhost;user=sa;password=Moiparol7713!;Database=marketAPI;Trusted_Connection=true;TrustServerCertificate=true;");
-
-                return new DataContext(optionsBuilder.Options, Users, Shops, Products);
-            }
-        }
+    public class DataContext : DbContext
+    {
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
