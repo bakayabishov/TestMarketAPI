@@ -1,11 +1,11 @@
 global using MarketApp.DataAccess;
 global using Microsoft.EntityFrameworkCore;
-using AutoMapper;
 using MarketApp.Business.Interfaces;
-using MarketApp.Business.Models.Mappings;
 using MarketApp.Business.Models.Validators;
 using MarketApp.Business.Services;
 using MarketApp.Business.UnitOfWork;
+using MarketApp.DataAccess.Repositories;
+using MarketApp.DataAccess.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +19,7 @@ builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUsersServices, UsersServices>();
+builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddValidators();
 builder.Services.AddDbContext<DataContext>(options =>
 {

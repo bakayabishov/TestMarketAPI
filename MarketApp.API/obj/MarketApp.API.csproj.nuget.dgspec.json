@@ -28,9 +28,6 @@
             "projectReferences": {
               "C:\\Users\\user\\RiderProjects\\TestMarketAPI\\MarketApp.Business\\MarketApp.Business.csproj": {
                 "projectPath": "C:\\Users\\user\\RiderProjects\\TestMarketAPI\\MarketApp.Business\\MarketApp.Business.csproj"
-              },
-              "C:\\Users\\user\\RiderProjects\\TestMarketAPI\\MarketApp.DataAccess\\MarketApp.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\user\\RiderProjects\\TestMarketAPI\\MarketApp.DataAccess\\MarketApp.DataAccess.csproj"
               }
             }
           }

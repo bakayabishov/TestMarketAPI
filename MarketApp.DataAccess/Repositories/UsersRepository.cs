@@ -14,7 +14,7 @@ public class UsersRepository : BaseRepository<User, int>, IUsersRepository
         return await query.AnyAsync();
     }
     
-    public virtual async Task<User?> GetUser(string name) {
+    public async Task<User?> GetUser(string name) {
         var user =  await All.Include(x => x.Shop).Include(x => x.Role).Where(x => x.Name == name).FirstOrDefaultAsync();
             if (user == null)
         {

@@ -9,7 +9,6 @@
     
     <ItemGroup>
         <ProjectReference Include="..\MarketApp.Business\MarketApp.Business.csproj" />
-        <ProjectReference Include="..\MarketApp.DataAccess\MarketApp.DataAccess.csproj" />
     </ItemGroup>
     
     <ItemGroup>
