@@ -29,4 +29,9 @@ public class UsersServices : IUsersServices
         await _uow.Users.InsertAsync(_mapper.Map<User>(user));
         await _uow.SaveChangesAsync();
     }
+
+    public async Task<UserDetailsDto> GetUserDetails(string name) 
+    {
+        return _mapper.Map<UserDetailsDto>(await _uow.Users.GetUser(name));
+    }
 }

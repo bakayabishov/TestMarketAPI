@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "w5G7D46LM5nwKWPA1fGj3RnZjbUgsZazvavUU75cAjSjMEVc6vcoYN6AX+nF7sIRMFnK5fZatImL6O+jdT5rJQ==",
+  "dgSpecHash": "NgxBe8bOpK3/hEQDcbNXisr3s0Ja47a8/8kq6qWRioGn4COkes3wAf0Gw2zvDRHXws97flUuvyTjGrebnr6NgA==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\RiderProjects\\TestMarketAPI\\MarketApp.API\\MarketApp.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",

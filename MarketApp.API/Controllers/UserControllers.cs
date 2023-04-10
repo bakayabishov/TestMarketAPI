@@ -27,11 +27,19 @@ public class UserControllers : ControllerBase
 
     [HttpPost]
     [Route("AddUser")]
-    [Authorize(Roles = $"{Role.Administrator}")]
+   // [Authorized(Role.Administrator)]
     [ProducesResponseType(typeof(ApiResponse), 200)]
     public async Task<IActionResult> CreateAsync(UserDto user) {
 
         await _usersServices.AddUsersAsync(user);
         return Ok(ApiResponse.Success("Пользователь успешно создан"));
+    }
+
+    [HttpGet]
+    [Route("GetUser")]
+    //[Authorize(Roles = $"{Role.Manager},{Role.Seller}")]
+    public async Task<IActionResult> Get(string name) {
+        
+        return Ok(await _usersServices.GetUserDetails(name));
     }
 }
