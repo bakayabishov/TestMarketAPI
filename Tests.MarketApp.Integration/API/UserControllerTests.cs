@@ -35,7 +35,7 @@ namespace Tests.MarketApp.Integration.API
         public async Task CreateAsync_ReturnsOkResult_WhenUserIsValid() {
             var userDto = _faker.NewUser().Generate();
             _service.Setup(service => service.AddUsersAsync(It.IsAny<UserDto>()))
-                .Returns(Task.CompletedTask);
+                .Returns((Task<int>)Task.CompletedTask);
 
             var result = await _userController.CreateAsync(userDto);
 

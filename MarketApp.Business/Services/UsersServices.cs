@@ -18,20 +18,25 @@ public class UsersServices : IUsersServices
         _uow = uow;
     }
     
-    public async Task AddUsersAsync(UserDto user)
-    {
+    public async Task<int> AddUsersAsync(UserDto user) {
         if (await _uow.Users.IsAlreadyRegisteredAsync(user.Name))
         {
-            throw new UserAlreadyExistException("The student cannot be found.", user.Name);
+            throw new UserAlreadyExistException("The user with the same name already exist.", user.Name);
 
         }
 
-        await _uow.Users.InsertAsync(_mapper.Map<User>(user));
+        var entity = _mapper.Map<User>(user);
+        await _uow.Users.InsertAsync(entity);
         await _uow.SaveChangesAsync();
+        return entity.Id;
     }
 
-    public async Task<UserDetailsDto> GetUserDetails(string name) 
+    public async Task<UserDetailsDto> GetUserDetails(int id) 
     {
-        return _mapper.Map<UserDetailsDto>(await _uow.Users.GetUser(name));
+        return _mapper.Map<UserDetailsDto>(await _uow.Users.GetUser(id));
+    }
+
+    public async Task<List<UserDetailsDto>> GetAllAsync() {
+        return _mapper.Map<List<UserDetailsDto>>(await _uow.Users.GetAllAsync());
     }
 }

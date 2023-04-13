@@ -4,8 +4,6 @@ using MarketApp.API.Controllers.Responses;
 using MarketApp.Business.Interfaces;
 using MarketApp.Business.Models;
 using MarketApp.Business.UnitOfWork;
-using MarketApp.DataAccess.Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarketApp.API.Controllers;
@@ -34,12 +32,20 @@ public class UserControllers : ControllerBase
         await _usersServices.AddUsersAsync(user);
         return Ok(ApiResponse.Success("Пользователь успешно создан"));
     }
+   
+   [HttpGet]
+   [Route("GetAll")]
+   //[Authorize(Roles = $"{Role.Manager},{Role.Seller}")]
+   public async Task<IActionResult> Get() {
+        
+       return Ok(await _usersServices.GetAllAsync());
+   }
 
     [HttpGet]
     [Route("GetUser")]
     //[Authorize(Roles = $"{Role.Manager},{Role.Seller}")]
-    public async Task<IActionResult> Get(string name) {
+    public async Task<IActionResult> Get(int id) {
         
-        return Ok(await _usersServices.GetUserDetails(name));
+        return Ok(await _usersServices.GetUserDetails(id));
     }
 }
