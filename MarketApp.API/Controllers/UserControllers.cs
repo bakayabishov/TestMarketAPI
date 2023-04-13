@@ -12,6 +12,8 @@ namespace MarketApp.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[Authorize]
+
 public class UserControllers : ControllerBase
 {
     private readonly IUsersServices _usersServices;
