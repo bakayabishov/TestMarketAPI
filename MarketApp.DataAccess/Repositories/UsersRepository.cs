@@ -5,22 +5,27 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MarketApp.DataAccess.Repositories;
 
-public class UsersRepository : BaseRepository<User, int>, IUsersRepository
+public sealed class UsersRepository : BaseRepository<User, int>, IUsersRepository
 {
     public UsersRepository(DataContext context) : base(context) { }
     
-    public virtual async Task<bool> IsAlreadyRegisteredAsync(string name) {
+    public async Task<bool> IsAlreadyRegisteredAsync(string name) {
         var query = All.Where(x => x.Name == name);
         return await query.AnyAsync();
     }
     
-    public async Task<User?> GetUser(string name) {
-        var user =  await All.Include(x => x.Shop).Include(x => x.Role).Where(x => x.Name == name).FirstOrDefaultAsync();
+    public async Task<User?> GetUser(int id) {
+        var user =  await All.Include(x => x.Shop).Where(x => x.Id == id).FirstOrDefaultAsync();
             if (user == null)
         {
-            throw new EntityNotFoundException("The user cannot be found.", name);
+            throw new EntityNotFoundException("The user cannot be found.", id.ToString());
         }
 
         return user;        
+    }
+    
+    public override async Task<IEnumerable<User>> GetAllAsync() {
+        var result = await All.OrderBy(x => x.Name).Include(x => x.Shop).ToListAsync();
+        return result;
     }
 }

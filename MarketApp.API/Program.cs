@@ -1,5 +1,6 @@
 global using MarketApp.DataAccess;
 global using Microsoft.EntityFrameworkCore;
+using System;
 using MarketApp.Business.Interfaces;
 using MarketApp.Business.Models.Validators;
 using MarketApp.Business.Services;
@@ -16,10 +17,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUsersServices, UsersServices>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddValidators();
 builder.Services.AddDbContext<DataContext>(options =>
 {
@@ -29,6 +29,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
 var app = builder.Build();
 

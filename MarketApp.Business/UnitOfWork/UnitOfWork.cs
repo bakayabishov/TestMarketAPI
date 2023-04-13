@@ -3,7 +3,7 @@ using MarketApp.DataAccess.Repositories.Interfaces;
 
 namespace MarketApp.Business.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork
+    public sealed class UnitOfWork : IUnitOfWork
     {
         #region Property
         private readonly DataContext _context;
@@ -11,7 +11,10 @@ namespace MarketApp.Business.UnitOfWork
         #endregion
 
         #region Constructor
-        public UnitOfWork(DataContext context) => this._context = context;
+        public UnitOfWork(DataContext context, IUsersRepository users) {
+            this._context = context;
+            Users = users;
+        }
         #endregion
 
         #region Method
@@ -20,7 +23,7 @@ namespace MarketApp.Business.UnitOfWork
 
         public IUsersRepository Users { get; }
 
-        protected virtual void Clean(bool disposing)
+        private void Clean(bool disposing)
         {
             if (!this._disposed)
             {

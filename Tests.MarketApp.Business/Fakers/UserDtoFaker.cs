@@ -12,7 +12,7 @@ public class UserDtoFaker
             .UseSeed(9376)
             .RuleFor(x => x.Name, x => x.Random.Word())
             .RuleFor(x => x.Password, x => x.Random.String())
-            .RuleFor(x => x.Role, x => x.PickRandom<Roles>());
+            .RuleFor(x => x.Role, x => x.PickRandom<Role>());
         
     }
 }
