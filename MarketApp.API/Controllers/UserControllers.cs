@@ -1,12 +1,10 @@
 using System.Threading.Tasks;
-using AutoMapper;
 using MarketApp.API.Controllers.Responses;
 using MarketApp.Business.Interfaces;
 using MarketApp.Business.Models;
-using MarketApp.Business.UnitOfWork;
 using MarketApp.DataAccess.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 
 namespace MarketApp.API.Controllers;
 
@@ -17,15 +15,11 @@ namespace MarketApp.API.Controllers;
 public class UserControllers : ControllerBase
 {
     private readonly IUsersServices _usersServices;
-    private readonly IConfiguration _configuration;
-    private readonly IUnitOfWork _uow;
-    private readonly IMapper _mapper;
 
-    public UserControllers(IUsersServices usersServices, IUnitOfWork unitOfWork, IMapper mapper, IConfiguration configuration) {
+
+    public UserControllers(IUsersServices usersServices) {
         _usersServices = usersServices;
-        _uow = unitOfWork;
-        _mapper = mapper;
-        _configuration = configuration;
+
     }
 
     [HttpPost]

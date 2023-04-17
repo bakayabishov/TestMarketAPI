@@ -11,15 +11,13 @@ namespace MarketApp.Business.Services;
 
 public class UsersServices : IUsersServices
 {
-    private readonly IConfiguration _configuration;
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _uow;
 
-    public UsersServices(IMapper mapper, IUnitOfWork uow, IConfiguration configuration)
+    public UsersServices(IMapper mapper, IUnitOfWork uow)
     {
         _mapper = mapper;
         _uow = uow;
-        _configuration = configuration;
     }
     
     public async Task<int> AddUsersAsync(UserDto user) {

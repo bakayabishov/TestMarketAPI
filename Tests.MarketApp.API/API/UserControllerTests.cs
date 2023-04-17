@@ -16,13 +16,11 @@ namespace MarketApp.API.Tests.API;
 public class UserControllerTests : TestBase {
     private UserControllers _userControllers;
     private Mock<IUsersServices> _service;
-    private Mock<IUnitOfWork> _uow;
     private UserDtoFaker _faker;  
 
     public override void Setup() {
         _service = new();
-        _uow = new();
-        _userControllers = new(_service.Object, _uow.Object, CreateMapper(new UserMappingProfile()));
+        _userControllers = new(_service.Object);
 
         _faker = new();
     }

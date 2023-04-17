@@ -1,4 +1,5 @@
 using MarketApp.Business.Models;
+using MarketApp.DataAccess.Entities;
 
 namespace MarketApp.Business.Interfaces;
 

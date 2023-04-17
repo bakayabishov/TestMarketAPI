@@ -19,15 +19,11 @@ namespace Tests.MarketApp.Integration.API
     {
         private UserControllers _userController;
         private Mock<IUsersServices> _service;
-        private Mock<IUnitOfWork> _uow;
-        private Mock<IMapper> _mapper;
         private UserDtoFaker _faker;
 
         public UserControllerTests() {
             _service = new();
-            _uow = new();
-            _mapper = new();
-            _userController = new(_service.Object, _uow.Object, _mapper.Object);
+            _userController = new(_service.Object);
             _faker = new();
         }
 

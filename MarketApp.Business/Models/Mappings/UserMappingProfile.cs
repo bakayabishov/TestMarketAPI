@@ -14,5 +14,8 @@ public class UserMappingProfile : Profile {
             .ForMember(dest => dest.ShopName, opt => opt.MapFrom(source => source.Shop.Name))
             .ForMember(dest => dest.UserName, opt => opt.MapFrom(source => source.Name))
             .ForMember(dest => dest.Role, opt => opt.MapFrom(source => source.Role.GetDisplayName())).ReverseMap();
+        
+        CreateMap<ProductDto, Product>().ReverseMap()
+            .ForMember(dest => dest.ShopId, opt => opt.MapFrom(source => source.Shop.Id));
     }
 }
