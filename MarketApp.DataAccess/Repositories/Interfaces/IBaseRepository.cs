@@ -4,5 +4,7 @@
     {
         Task InsertAsync(TEntity entity);
         Task AddRangeAsync(IEnumerable<TEntity> entities);
+        IQueryable<TEntity> All { get; }
+
     }
 }

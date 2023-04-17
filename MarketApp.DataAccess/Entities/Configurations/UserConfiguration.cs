@@ -26,6 +26,12 @@ namespace MarketApp.DataAccess.Entities.Configurations {
                 .HasColumnName("password")
                 .HasMaxLength(255)
                 .IsRequired();
+            
+            builder.Property(x => x.Role)
+                .HasColumnName("role")
+                .HasColumnType("nvarchar")
+                .HasMaxLength(255)
+                .IsRequired();
         }
     }
 }

@@ -11,6 +11,6 @@ public class UserFaker
             .UseSeed(9476)
             .RuleFor(x => x.Name, x => x.Random.Word())
             .RuleFor(x => x.Password, x => x.Random.String())
-            .RuleFor(x => x.Role, x => x.PickRandom(Role.Administrator, Role.Manager, Role.Saller));
+            .RuleFor(x => x.Role, x => x.PickRandom(Role.Administrator, Role.Manager, Role.Seller));
     }
 }

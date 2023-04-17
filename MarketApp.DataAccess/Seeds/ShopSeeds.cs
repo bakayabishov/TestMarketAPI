@@ -14,7 +14,7 @@ public class ShopSeeds : ISeeds {
                 new Shop {
                     Id = 2,
                     Name = "Строительный",
-                    ManagerId = 2
+                    ManagerId = 4
                 });
         
         return builder;

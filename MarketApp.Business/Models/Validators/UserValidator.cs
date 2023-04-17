@@ -9,6 +9,6 @@ public class UserValidator : AbstractValidator<User> {
             .WithMessage("Фио должно быть на кириллице");
         RuleFor(x => x.Password).NotNull().WithName("Пароль").NotEmpty().MinimumLength(6).MaximumLength(16).Matches(@"^[a-z0-9_/-]{3,24}$")
             .WithMessage("Пароль должен содержать только латиницу или цифры");
-        RuleFor(x => x.Role).NotNull().WithName("Роль").NotEmpty().Equals(typeof(Roles));
+        RuleFor(x => x.Role).NotNull().WithName("Роль").NotEmpty().Equals(typeof(Role));
     }
 }
