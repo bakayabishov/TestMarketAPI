@@ -18,7 +18,7 @@ public sealed class UsersRepository : BaseRepository<User, int>, IUsersRepositor
         var user =  await All.Include(x => x.Shop).Where(x => x.Id == id).FirstOrDefaultAsync();
             if (user == null)
         {
-            throw new EntityNotFoundException("The user cannot be found.", id.ToString());
+            throw new EntityNotFoundException("Пользователь не найден", id.ToString());
         }
 
         return user;        
@@ -36,7 +36,7 @@ public sealed class UsersRepository : BaseRepository<User, int>, IUsersRepositor
     public async Task DeleteSellersAsync(int sellerId, int shopId) {
         var entities = await All.Where(item => item.ShopId == shopId && item.Id == sellerId).ToListAsync();
         if (!entities.Any()) {
-            throw new Exception("There are no items in the warehouse.");
+            throw new Exception("Пользователь не найден");
         }
 
         Context.Set<User>().RemoveRange(entities);

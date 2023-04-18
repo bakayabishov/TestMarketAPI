@@ -26,7 +26,7 @@ public class ProductsServices : IProductsService
     public async Task<int> AddAsync(ProductDto product, string userName) {
         if (await _uow.Products.IsAlreadyExistAsync(product.Name))
         {
-            throw new UserAlreadyExistException("Product with the same name already exist.", product.Name);
+            throw new UserAlreadyExistException("Товар с таким наименованием уже есть в системе", product.Name);
 
         }
         var currentUser = await _uow.Users.GetByLoginAsync(userName);
@@ -69,13 +69,33 @@ public class ProductsServices : IProductsService
         var entityCurrent = await _uow.Products.GetByIdAsync(productId);
         if (amount > entityCurrent.Quantity)
         {
-            throw new Exception("Not enough products in warehouse");
+            throw new Exception("Не достаточно товара на складе");
         }
 
         var newQuantity = entityCurrent.Quantity - amount;
         entityCurrent.Quantity = newQuantity;
 
         _uow.Products.Update(entityCurrent);
+        await _uow.SaveChangesAsync();
+        return newQuantity;
+    }
+
+    public async Task<int> SellProductsAsync(string productName, int amount, string userName) {
+        var entity= await _uow.Products.GetByNameAsync(productName);
+        var seller = await _uow.Users.GetByLoginAsync(userName);
+        if (amount > entity.Quantity)
+        {
+            throw new Exception("Не достаточно товара на складе");
+        }
+        if (entity.ShopId != seller.ShopId)
+        {
+            throw new Exception("Вы можете продавать товар только из своего магазина");
+        }
+
+        var newQuantity = entity.Quantity - amount;
+        entity.Quantity = newQuantity;
+
+        _uow.Products.Update(entity);
         await _uow.SaveChangesAsync();
         return newQuantity;
     }

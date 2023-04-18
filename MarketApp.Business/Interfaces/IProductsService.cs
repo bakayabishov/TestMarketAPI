@@ -9,4 +9,5 @@ public interface IProductsService
     Task RemoveItemsByIdAsync(int productId, string userName);
     Task<int> IncreaseProductAmountByIdAsync(int productId,  int quantity);
     Task<int> DecreaseProductAmountByIdAsync(int productId, int amount);
+    Task<int> SellProductsAsync(string productName, int amount, string userName);
 }

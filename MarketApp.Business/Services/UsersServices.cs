@@ -5,8 +5,6 @@ using MarketApp.Business.Models;
 using MarketApp.Business.UnitOfWork;
 using MarketApp.DataAccess.Entities;
 using MarketApp.DataAccess.Exceptions;
-using Microsoft.Extensions.Configuration;
-
 
 namespace MarketApp.Business.Services;
 
@@ -24,7 +22,7 @@ public class UsersServices : IUsersServices
     public async Task<int> AddUsersAsync(UserDto user) {
         if (await _uow.Users.IsAlreadyRegisteredAsync(user.Name))
         {
-            throw new UserAlreadyExistException("The user with the same name already exist.", user.Name);
+            throw new UserAlreadyExistException("Пользователь с таким имененем уже есть в системе", user.Name);
 
         }
 
@@ -47,7 +45,7 @@ public class UsersServices : IUsersServices
         var managerEntity = await _uow.Users.GetByLoginAsync(manager);
         if (await _uow.Users.IsAlreadyRegisteredAsync(seller.Name))
         {
-            throw new UserAlreadyExistException("The user with the same name already exist.", seller.Name);
+            throw new UserAlreadyExistException("Пользователь с таким имененем уже есть в системе", seller.Name);
 
         }
         var entity = _mapper.Map<User>(seller);
