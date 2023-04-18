@@ -70,4 +70,14 @@ public class ProductControllers : ControllerBase
    
         return Ok(ApiValueResponse<int>.Success("Количество товаров успешно обновлено.", newAmount));
     }
+    [HttpPut]
+    [Route("SellProducts")]
+    [Authorized(Role.Seller)]
+    [ProducesResponseType(typeof(ApiValueResponse<int>), 200)]
+    public async Task<IActionResult> SellProducts(string productName, int amount) {
+        var userName = User.Identity.Name;
+        var newAmount = await _productsService.SellProductsAsync(productName, amount, userName);
+   
+        return Ok(ApiValueResponse<int>.Success($"Продажа проведена успешно остаток на складе {newAmount}"));
+    }
 }

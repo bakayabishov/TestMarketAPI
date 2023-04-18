@@ -18,7 +18,7 @@ public class ProductsRepository :  BaseRepository<Product, int>, IProductsReposi
         var product =  await All.Include(x => x.Shop).Where(x => x.Id == id).FirstOrDefaultAsync();
         if (product == null)
         {
-            throw new EntityNotFoundException("The item cannot be found.", id.ToString());
+            throw new EntityNotFoundException("Товар с таким наименованием не найден", id.ToString());
         }
 
         return product;        
@@ -28,7 +28,7 @@ public class ProductsRepository :  BaseRepository<Product, int>, IProductsReposi
         var product =  await All.Include(x => x.Shop).Where(x => x.Id == id).FirstOrDefaultAsync();
         if (product == null)
         {
-            throw new EntityNotFoundException("The item cannot be found.", id.ToString());
+            throw new EntityNotFoundException("Товар с таким наименованием не найден", id.ToString());
         }
 
         return product.Quantity;        
@@ -42,9 +42,12 @@ public class ProductsRepository :  BaseRepository<Product, int>, IProductsReposi
     public async Task DeleteItemsAsync(int productId, int shopId) {
         var entities = await All.Where(item => item.ShopId == shopId && item.Id == productId).ToListAsync();
         if (!entities.Any()) {
-            throw new Exception("There are no items in the warehouse.");
+            throw new Exception("Товар с таким наименованием не найден");
         }
 
         Context.Set<Product>().RemoveRange(entities);
+    }
+    public async Task<Product?> GetByNameAsync(string productName) {
+        return await All.Where(x => x.Name == productName).FirstOrDefaultAsync();
     }
 }
