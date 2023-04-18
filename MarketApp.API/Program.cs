@@ -6,6 +6,7 @@ using MarketApp.Business.Interfaces;
 using MarketApp.Business.Models.Validators;
 using MarketApp.Business.Services;
 using MarketApp.Business.UnitOfWork;
+using MarketApp.DataAccess.Entities;
 using MarketApp.DataAccess.Repositories;
 using MarketApp.DataAccess.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -23,6 +24,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<IUsersServices, UsersServices>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<IProductsService, ProductsServices>();
+builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddValidators();
 builder.Services.AddDbContext<DataContext>(options =>

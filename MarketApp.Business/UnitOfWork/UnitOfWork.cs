@@ -11,9 +11,10 @@ namespace MarketApp.Business.UnitOfWork
         #endregion
 
         #region Constructor
-        public UnitOfWork(DataContext context, IUsersRepository users) {
+        public UnitOfWork(DataContext context, IUsersRepository users, IProductsRepository products) {
             this._context = context;
             Users = users;
+            Products = products;
         }
         #endregion
 
@@ -22,6 +23,7 @@ namespace MarketApp.Business.UnitOfWork
             await _context.SaveChangesAsync();
 
         public IUsersRepository Users { get; }
+        public IProductsRepository Products { get; }
 
         private void Clean(bool disposing)
         {

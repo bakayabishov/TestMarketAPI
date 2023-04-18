@@ -29,21 +29,21 @@ public class UserSeeds : ISeeds {
                 },
                 new User {
                     Id = 4,
-                    Name = "Администратор",
+                    Name = "Администратор2",
                     Password = "Admin",
                     Role = Role.Administrator,
                     ShopId = 2
                 },
                 new User {
                     Id = 5,
-                    Name = "Менеджер",
+                    Name = "Менеджер2",
                     Password = "Manager",
                     Role = Role.Manager,
                     ShopId = 2
                 },
                 new User {
                     Id = 6,
-                    Name = "Продавец",
+                    Name = "Продавец2",
                     Password = "Seller",
                     Role = Role.Seller,
                     ShopId = 2

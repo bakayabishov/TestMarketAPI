@@ -1,12 +1,10 @@
 using System.Threading.Tasks;
-using AutoMapper;
 using MarketApp.API.Controllers.Responses;
 using MarketApp.Business.Interfaces;
 using MarketApp.Business.Models;
-using MarketApp.Business.UnitOfWork;
 using MarketApp.DataAccess.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 
 namespace MarketApp.API.Controllers;
 
@@ -17,15 +15,11 @@ namespace MarketApp.API.Controllers;
 public class UserControllers : ControllerBase
 {
     private readonly IUsersServices _usersServices;
-    private readonly IConfiguration _configuration;
-    private readonly IUnitOfWork _uow;
-    private readonly IMapper _mapper;
 
-    public UserControllers(IUsersServices usersServices, IUnitOfWork unitOfWork, IMapper mapper, IConfiguration configuration) {
+
+    public UserControllers(IUsersServices usersServices) {
         _usersServices = usersServices;
-        _uow = unitOfWork;
-        _mapper = mapper;
-        _configuration = configuration;
+
     }
 
     [HttpPost]
@@ -40,8 +34,8 @@ public class UserControllers : ControllerBase
    
    [HttpGet]
    [Route("GetAll")]
-   //[Authorized(Role.Manager, Role.Seller)]
-   public async Task<IActionResult> Get() {
+   [Authorized(Role.Manager, Role.Seller)]
+   public async Task<IActionResult> GetAllUsersAsync() {
         
        return Ok(await _usersServices.GetAllAsync());
    }
@@ -49,8 +43,28 @@ public class UserControllers : ControllerBase
     [HttpGet]
     [Route("GetUser")] 
     [Authorized(Role.Manager, Role.Seller)]
-    public async Task<IActionResult> Get(int id) {
+    public async Task<IActionResult> GetUserAsync(int id) {
         
         return Ok(await _usersServices.GetUserDetails(id));
+    }
+
+    [HttpPost]
+    [Route("AddSeller")]
+    [Authorized(Role.Manager)]
+    [ProducesResponseType(typeof(ApiResponse), 200)]
+    public async Task<IActionResult> CreateSellerAsync(SellerDto seller) {
+        var manager = User.Identity.Name;
+
+        await _usersServices.AddSellerAsync(seller, manager);
+        return Ok(ApiResponse.Success("Профиль продовца успешно создан"));
+    }
+    [HttpDelete]
+    [Route("RemoveSellerProfile")]
+    [Authorized(Role.Manager)]
+    [ProducesResponseType(typeof(ApiResponse), 200)]
+    public async Task<IActionResult> Delete(string sellerName) {
+        var userName = User.Identity.Name;
+        await _usersServices.RemoveSellersByIdAsync(sellerName, userName);
+        return Ok(ApiResponse.Success("Профиль продовца успешно удален"));
     }
 }

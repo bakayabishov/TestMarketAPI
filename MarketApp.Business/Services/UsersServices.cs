@@ -4,6 +4,7 @@ using MarketApp.Business.Interfaces;
 using MarketApp.Business.Models;
 using MarketApp.Business.UnitOfWork;
 using MarketApp.DataAccess.Entities;
+using MarketApp.DataAccess.Exceptions;
 using Microsoft.Extensions.Configuration;
 
 
@@ -11,15 +12,13 @@ namespace MarketApp.Business.Services;
 
 public class UsersServices : IUsersServices
 {
-    private readonly IConfiguration _configuration;
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _uow;
 
-    public UsersServices(IMapper mapper, IUnitOfWork uow, IConfiguration configuration)
+    public UsersServices(IMapper mapper, IUnitOfWork uow)
     {
         _mapper = mapper;
         _uow = uow;
-        _configuration = configuration;
     }
     
     public async Task<int> AddUsersAsync(UserDto user) {
@@ -37,10 +36,48 @@ public class UsersServices : IUsersServices
 
     public async Task<UserDetailsDto> GetUserDetails(int id) 
     {
-        return _mapper.Map<UserDetailsDto>(await _uow.Users.GetUser(id));
+        return _mapper.Map<UserDetailsDto>(await _uow.Users.GetByIdAsync(id));
     }
 
     public async Task<List<UserDetailsDto>> GetAllAsync() {
         return _mapper.Map<List<UserDetailsDto>>(await _uow.Users.GetAllAsync());
+    }
+
+    public async Task<int> AddSellerAsync(SellerDto seller, string manager) {
+        var managerEntity = await _uow.Users.GetByLoginAsync(manager);
+        if (await _uow.Users.IsAlreadyRegisteredAsync(seller.Name))
+        {
+            throw new UserAlreadyExistException("The user with the same name already exist.", seller.Name);
+
+        }
+        var entity = _mapper.Map<User>(seller);
+        entity.ShopId = managerEntity.ShopId;
+        entity.Role = Role.Seller;
+        await _uow.Users.InsertAsync(entity);
+        await _uow.SaveChangesAsync();
+        return entity.Id;
+    }
+
+    public async Task RemoveSellersByIdAsync(string sellerName, string userName) {
+        var user = await _uow.Users.GetByLoginAsync(sellerName);
+
+        if (user is null)
+        {
+            throw new EntityNotFoundException("Пользователь не найден");
+        }
+        var currentUser = await _uow.Users.GetByLoginAsync(userName);
+
+        if (currentUser.ShopId != user.ShopId)
+        {
+            throw new Exception("Вы можете удольять профили только своих сотрудников");
+        }
+        if (user.Role != Role.Seller)
+        {
+            throw new Exception("Вы можете удолять профили только продавцов");
+        }
+
+
+        await _uow.Users.DeleteSellersAsync(user.Id, currentUser.ShopId);
+        await _uow.SaveChangesAsync();
     }
 }

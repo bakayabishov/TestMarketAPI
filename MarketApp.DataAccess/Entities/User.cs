@@ -1,11 +1,12 @@
-﻿using MarketApp.DataAccess.Entities.Configurations;
+﻿using Krista.Module.Common.DataAccess.Base.Entity;
+using MarketApp.DataAccess.Entities.Configurations;
 
 namespace MarketApp.DataAccess.Entities;
 /// <summary>
 ///     Configuration file for this entity <see cref="UserConfiguration" />
 /// </summary>
 
-public class User
+public class User : IEntityBase<int>
 {
     public int Id { get; set; }
     public Shop Shop { get; set; }
@@ -14,4 +15,7 @@ public class User
     public string Password { get; set; }
     public Role Role { get; set; }
     
+    public int GetId() {
+        return Id;
+    }
 }

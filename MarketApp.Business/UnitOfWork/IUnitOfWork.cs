@@ -6,6 +6,6 @@ namespace MarketApp.Business.UnitOfWork
     {
         Task SaveChangesAsync();
         IUsersRepository Users { get; }
-
+        IProductsRepository Products { get; }
     }
 }

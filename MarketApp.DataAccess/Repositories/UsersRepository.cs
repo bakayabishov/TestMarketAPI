@@ -14,7 +14,7 @@ public sealed class UsersRepository : BaseRepository<User, int>, IUsersRepositor
         return await query.AnyAsync();
     }
     
-    public async Task<User?> GetUser(int id) {
+    public async Task<User?> GetByIdAsync(int id) {
         var user =  await All.Include(x => x.Shop).Where(x => x.Id == id).FirstOrDefaultAsync();
             if (user == null)
         {
@@ -31,5 +31,14 @@ public sealed class UsersRepository : BaseRepository<User, int>, IUsersRepositor
     
     public async Task<User?> GetByLoginAsync(string login) {
         return await All.Where(x => x.Name == login).FirstOrDefaultAsync();
+    }
+    
+    public async Task DeleteSellersAsync(int sellerId, int shopId) {
+        var entities = await All.Where(item => item.ShopId == shopId && item.Id == sellerId).ToListAsync();
+        if (!entities.Any()) {
+            throw new Exception("There are no items in the warehouse.");
+        }
+
+        Context.Set<User>().RemoveRange(entities);
     }
 }
